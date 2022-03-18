@@ -1,1 +1,1 @@
-# libarry
+# library
