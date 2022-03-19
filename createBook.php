@@ -3,6 +3,16 @@
     <head>
         <?php
             require_once "navbar.php"; 
+            if(isset($_SESSION["userCode"])){
+                if($_SESSION["userCode"] != "LMS001"){
+                    echo '<script>window.alert("You do not have the permission to view this page!")</script>';
+                    echo '<script type="text/javascript">window.location = "index.php"</script>';
+                }
+            }
+            if(!isset($_SESSION["userCode"]) || !isset($_SESSION["name"])){
+                echo '<script>window.alert("Session expired! Please login to view this page")</script>';
+                echo '<script type="text/javascript">window.location = "login.php"</script>';
+            };
         ?>
     </head>
     <body>

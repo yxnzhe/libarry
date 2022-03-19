@@ -4,7 +4,7 @@
         <?php
             require_once "navbar.php";
             if(!isset($_SESSION["userCode"]) || !isset($_SESSION["name"])){
-                echo '<script>window.alert("Please login to view this page")</script>';
+                echo '<script>window.alert("Session expired! Please login to view this page")</script>';
                 echo '<script type="text/javascript">window.location = "login.php"</script>';
             };
             ?> 

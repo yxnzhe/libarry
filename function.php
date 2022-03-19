@@ -119,7 +119,7 @@
         $bookArray = array();
         $connect = connectDb();
 
-        $sql = "SELECT barcode, `name`, author, isbn, price FROM books";
+        $sql = "SELECT barcode, `name`, author, isbn FROM books";
 
         if($result = $connect->query($sql)){
             while($row = $result->fetch_assoc()){
@@ -181,6 +181,28 @@
                 echo "Error: ".$sql."<br>".mysqli_error($connect);
             }
             $stmt->close();
+            $connect->close();
+        }
+    }
+
+    function search($value){
+        if($value == ""){
+            echo "<p>Please fill in all the details</p>";
+        }else{
+            $resultsArr = array();
+            $connect = connectDb();
+            $value = "%".$value."%";
+
+            $sql = "SELECT barcode, name, author, isbn FROM books WHERE barcode LIKE '".$value."' OR name LIKE '".$value."' OR author LIKE '".$value."'";
+            if($result = $connect->query($sql)){
+                while($row = $result->fetch_assoc()){
+                    array_push($resultsArr, $row);
+                }
+            }else{
+                echo "Error: ".$sql."<br>".mysqli_error($connect);
+            }
+    
+            return $resultsArr;
             $connect->close();
         }
     }

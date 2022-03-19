@@ -2,8 +2,7 @@
 <html>
     <head>
         <?php
-            require_once "navbar.php"; 
-            // session_destroy();
+            require_once "navbar.php";
         ?>
     </head>
     <body>
